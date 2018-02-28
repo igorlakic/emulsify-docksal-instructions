@@ -4,11 +4,11 @@ This is a short "How to" for using [Emulsify](https://github.com/fourkitchens/em
 
 ## How to:
 
-- position yourself in the project root directory
+1. position yourself in the project root directory
 
 `cd [PROJECT_ROOT_DIR]`
 
-- install Emulsify theme using Docksal's Composer (Composer instance installed and configured in Docksal image)
+2. install Emulsify theme using Docksal's Composer (Composer instance installed and configured in Docksal image)
 
 `fin exec composer require fourkitchens/emulsify`
 
@@ -16,7 +16,7 @@ This is a short "How to" for using [Emulsify](https://github.com/fourkitchens/em
 I recommend using the _docksal/cli:2.0_ image (e.g. _docksal/cli:2.0-php7.1_).
 Docksal now exposes port 3000 for NodeJS apps by default so you can use Browsersync and similar node applications directly from Docksal containers. This means that it is no longer necessary to have node.js, nvm or/and yarn installed on your local OS. 
 
-- next, enable Emulsify and its dependencies
+3. next, enable Emulsify and its dependencies
 Drush 8.x users should use the following command:
 
 `fin exec drush en emulsify components unified_twig_ext -y`
@@ -33,7 +33,7 @@ Drush 9.x users should use the following commands:
 
 **NOTE!** At the moment (emulsify 2.2) Emulsify Drush command for cloning works only on Drush 8.x. 
 
-- next, run the following command from your theme directory (_contrib/emulsify_ or you custom clone _custom/YOUR_THEME_):
+4. next, run the following command from your theme directory (_contrib/emulsify_ or you custom clone _custom/YOUR_THEME_):
 
 `cd contrib/emulsify`
 
@@ -41,21 +41,18 @@ or
 
 `cd custom/[YOUR_THEME]`
 
-- then run `fin exec npm install` or `fin exec yarn install` command
+5. if you already don't have your Github auth token globally defined you should do this now with (replace "YOUR_TOKEN" with the [token generated on your Github account](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/)):
 
-- near the end, it will break ("Failed to clone the _git@github.com:drupal-pattern-lab/patternengine-php-twig.git_ repository") and you will have to edit _scripts/pattern_lab.sh_ - change line 8 to:
+`fin exec composer config --global github-oauth.github.com YOUR_TOKEN`
+ - this step is **necessary**, otherwise, you'll get this error after executing command in the following step: "_Failed to clone the git<span>@</span>github&#46;com:drupal-pattern-lab/patternengine-php-twig.git repository_"
 
-`composer create-project drupal-pattern-lab/edition-twig-standard pattern-lab`
+6. then run `fin exec npm install` or `fin exec yarn install` command
 
-- this change removes the flag "_-n_" for a non-interactive clone. 
-
-- afterwards, run again `fin exec npm install` or `fin exec yarn install` command; Then, you'll have to provide your Github credentials, make a Github token and then copy it to your terminal to continue with the installation process.
-
-- after a successful instalation you can start your Gulp tasks by runing `fin exec npm start` or `fin exec yarn start`
+7. after a successful instalation you can start your Gulp tasks by runing `fin exec npm start` or `fin exec yarn start`
 
 - there are 2 access URLs and you'll use the second one (external URL)
 
-- don't forget to set your theme as a default one; If you created a cloned theme, disable the original Emulsify theme `fin exec drush pmu emulsify -y` (works on Drush 8.x) or with
+8. don't forget to set your theme as a default one; If you created a cloned theme, disable the original Emulsify theme `fin exec drush pmu emulsify -y` (works on Drush 8.x) or with
 `fin exec drupal theme:uninstall emulsify` and enable and set to default your new theme in Drupal 
 (you can do that with the Drupal console command 
 `fin exec drupal theme:install emulsify --set-default` or via the Drupal UI)
