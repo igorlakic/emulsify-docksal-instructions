@@ -16,12 +16,16 @@ This is a short "How to" for using [Emulsify](https://github.com/fourkitchens/em
 I recommend using the _docksal/cli:2.0_ image (e.g. _docksal/cli:2.0-php7.1_).
 Docksal now exposes port 3000 for NodeJS apps by default so you can use Browsersync and similar node applications directly from Docksal containers. This means that it is no longer necessary to have node.js, nvm or/and yarn installed on your local OS. 
 
-3. next, enable Emulsify and its dependencies
-Drush 8.x users should use the following command:
+3. next, enable Emulsify and its dependencies.
+Drush 8.x users should use the following command but before that, position yourself in the web root directory ("_web_" or "_docroot_" in most cases) or use your drush aliases:
+
+`cd [WEB_ROOT_DIR]`
 
 `fin exec drush en emulsify components unified_twig_ext -y`
 
 Drush 9.x users should use the following commands:
+
+`cd [WEB_ROOT_DIR]`
 
 `fin exec drush en components unified_twig_ext -y`
 
@@ -39,7 +43,7 @@ Drush 9.x users should use the following commands:
 
 or
 
-`cd custom/[YOUR_THEME]`
+`cd custom/[YOUR_THEME_NAME]`
 
 5. if you already don't have your Github auth token globally defined you should do this now with (replace "YOUR_TOKEN" with the [token generated on your Github account](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/)):
 
@@ -53,6 +57,6 @@ or
 - there are 2 access URLs and you'll use the second one (external URL)
 
 8. don't forget to set your theme as a default one; If you created a cloned theme, disable the original Emulsify theme `fin exec drush pmu emulsify -y` (works on Drush 8.x) or with
-`fin exec drupal theme:uninstall emulsify` and enable and set to default your new theme in Drupal 
+`fin exec drupal theme:uninstall emulsify` then enable and set to default your new theme in Drupal 
 (you can do that with the Drupal console command 
-`fin exec drupal theme:install emulsify --set-default` or via the Drupal UI)
+`fin exec drupal theme:install [YOUR_THEME_NAME] --set-default` or via the Drupal UI)
