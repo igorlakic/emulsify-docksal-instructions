@@ -13,7 +13,7 @@ This is a short "How to" for using [Emulsify](https://github.com/fourkitchens/em
 `fin exec composer require fourkitchens/emulsify`
 
 **NOTE!!!**
-I recommend using the _docksal/cli:2.0_ image (e.g. _docksal/cli:2.0-php7.1_).
+I recommend using the _docksal/cli:2.0_ or newer images (e.g. _docksal/cli:2.0-php7.1_).
 Docksal now exposes port 3000 for NodeJS apps by default so you can use Browsersync and similar node applications directly from Docksal containers. This means that it is no longer necessary to have node.js, nvm or/and yarn installed on your local OS. 
 
 3. next, enable Emulsify and its dependencies.
@@ -31,19 +31,24 @@ Drush 9.x users should use the following commands:
 
 `fin exec drush theme:enable emulsify`
 
-- optionaly, create a custom clone of Emulsify with:
+- optionaly, create a custom clone of the Emulsify (you need to run the following command from within the Emulsify directory; replace _YOUR THEME NAME_ with your theme name):
 
-`fin exec drush emulsify "YOUR_THEME"`
+`cd themes/contrib/emulsify`
+`php emulsify.php "YOUR THEME NAME"` 
 
-**NOTE!** At the moment (emulsify 2.2) Emulsify Drush command for cloning works only on Drush 8.x. 
+(Run `php emulsify.php -h` for other available options)
 
-4. next, run the following command from your theme directory (_contrib/emulsify_ or you custom clone _custom/YOUR_THEME_):
+- I like to use this clone command with the following arguments (replace _YOUR THEME NAME_ with your theme name):
 
-`cd contrib/emulsify`
+`fin exec php emulsify.php "YOUR THEME NAME" --machine-name your-theme-name --path custom --description "YOUR THEME NAME is a clone of Emulsify theme"`
 
-or
+4. next, run the following command from your theme directory if you're going to use your custom clone of the Emulsify theme (I always make a "_custom_" directory for custom themes, e.g. _custom/YOUR\_THEME_):
+
+`cd ../..` (return to "_themes_" directory)
 
 `cd custom/[YOUR_THEME_NAME]`
+
+- if you're planing to use Emulsify theme (which is not recommended!), just stay in the _contrib/emulsify_ directory
 
 5. if you already don't have your Github auth token globally defined you should do this now with (replace "YOUR_TOKEN" with the [token generated on your Github account](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/)):
 
